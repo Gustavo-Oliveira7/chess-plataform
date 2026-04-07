@@ -41,7 +41,6 @@ public class GameController {
         return gameService.makeMove(gameId, from, to);
     }
 
-
     @GetMapping("/{id}")
     public Game getGame(@PathVariable Long id) {
         return gameService.getGame(id);
