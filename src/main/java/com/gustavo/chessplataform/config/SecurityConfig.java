@@ -18,7 +18,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/users",
                                 "/api/users/***",
-                                "/api/games/",
+                                "/api/games",
                                 "/api/games/***"
                         ).permitAll()
                         .anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
