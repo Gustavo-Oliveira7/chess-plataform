@@ -1,6 +1,7 @@
 package com.gustavo.chessplataform.controller;
 
 import com.gustavo.chessplataform.domain.model.Game;
+import com.gustavo.chessplataform.domain.model.Move;
 import com.gustavo.chessplataform.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,16 @@ public class GameController {
     ) {
         return gameService.joinGame(gameId, blackPlayerId);
     }
+
+    @PostMapping("/{gameId}/moves")
+    public Move makeMove(
+            @PathVariable Long gameId,
+            @RequestParam String from,
+            @RequestParam String to
+    ) {
+        return gameService.makeMove(gameId, from, to);
+    }
+
 
     @GetMapping("/{id}")
     public Game getGame(@PathVariable Long id) {
