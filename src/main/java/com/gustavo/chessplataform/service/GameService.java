@@ -28,6 +28,7 @@ public class GameService {
             throw new RuntimeException("White player not found");
         }
         Game game = new Game(whitePlayerId);
+        game.setCurrentTurn("WHITE");
         return gameRepository.save(game);
 
     }
@@ -54,7 +55,14 @@ public class GameService {
         move.setToPosition(to);
         move.setGame(game);
 
-        move.setFenAfterMove("AQUI_VEM_O_FEN");
+        game.setBoardFen("UPDATED_AFTER_" + from + "_" + to);
+        if (game.getCurrentTurn().equals("WHITE")) {
+            game.setCurrentTurn("BLACK");
+        } else {
+            game.setCurrentTurn("WHITE");
+        }
+
+        gameRepository.save(game);
 
         return moveRepository.save(move);
     }

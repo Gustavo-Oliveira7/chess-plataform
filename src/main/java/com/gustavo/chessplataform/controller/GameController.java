@@ -20,8 +20,8 @@ public class GameController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Game createGame(@RequestParam Long whitePlayerID) {
-        return gameService.createGame(whitePlayerID);
+    public Game createGame(@RequestParam Long whitePlayerId) {
+        return gameService.createGame(whitePlayerId);
     }
 
     @PostMapping("/{gameId}/join")

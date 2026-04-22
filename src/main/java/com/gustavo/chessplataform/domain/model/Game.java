@@ -1,8 +1,10 @@
 package com.gustavo.chessplataform.domain.model;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "games")
@@ -13,6 +15,9 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "current_turn")
+    private String currentTurn;
 
     @Column(name = "white_player_id", nullable = false)
     private Long whitePlayerId;
@@ -30,6 +35,7 @@ public class Game {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    @Setter
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
@@ -57,6 +63,66 @@ public class Game {
         }
         this.blackPlayerId = blackPlayerId;
         this.status = GameStatus.ACTIVE;
+    }
+
+    public String getCurrentTurn() {
+        return currentTurn;
+    }
+
+    public void setCurrentTurn(String currentTurn) {
+        this.currentTurn = currentTurn;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getWhitePlayerId() {
+        return whitePlayerId;
+    }
+
+    public void setWhitePlayerId(Long whitePlayerId) {
+        this.whitePlayerId = whitePlayerId;
+    }
+
+    public Long getBlackPlayerId() {
+        return blackPlayerId;
+    }
+
+    public void setBlackPlayerId(Long blackPlayerId) {
+        this.blackPlayerId = blackPlayerId;
+    }
+
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(GameStatus status) {
+        this.status = status;
+    }
+
+    public String getBoardFen() {
+        return boardFen;
+    }
+
+    public void setBoardFen(String boardFen) {
+        this.boardFen = boardFen;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
     }
 
 }

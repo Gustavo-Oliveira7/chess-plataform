@@ -18,6 +18,12 @@ public class Move {
     private String fenAfterMove;
     private LocalDateTime createdAt;
 
+    @PrePersist
+    public void prePersist(){
+        this.createdAt = LocalDateTime.now();
+    }
+
+
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
