@@ -17,7 +17,7 @@ public class Postion {
         this.col = col;
     }
 
-    public static Postion fromCHess(String pos) {
+    public static Postion fromChess(String pos) {
         if(pos == null || pos.length() != 2) {
             throw new IllegalArgumentException("Invalid position format");
         }

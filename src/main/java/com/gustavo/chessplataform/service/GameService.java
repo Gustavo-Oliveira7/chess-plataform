@@ -1,6 +1,7 @@
 package com.gustavo.chessplataform.service;
 
 
+import com.gustavo.chessplataform.domain.chess.Postion;
 import com.gustavo.chessplataform.domain.model.Game;
 import com.gustavo.chessplataform.domain.model.Move;
 import com.gustavo.chessplataform.domain.repository.GameRepository;
@@ -50,12 +51,19 @@ public class GameService {
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(() -> new RuntimeException("Game not found"));
 
+        Postion fromPos = Postion.fromChess(from);
+        Postion toPos = Postion.fromChess(to);
+
+        if (fromPos.getRow() == toPos.getRow() &&
+            fromPos.getCol() == toPos.getCol()){
+            throw new RuntimeException("Invalid move: same position");
+        }
+
         Move move = new Move();
         move.setFromPosition(from);
         move.setToPosition(to);
         move.setGame(game);
 
-        game.setBoardFen("UPDATED_AFTER_" + from + "_" + to);
         if (game.getCurrentTurn().equals("WHITE")) {
             game.setCurrentTurn("BLACK");
         } else {
